@@ -54,8 +54,8 @@ jobs:
     
     steps:
     
-    - name: Setup VSTest.exe
-      uses: Malcolmnixon/Setup-VSTest@v4
+    -  uses: actions/checkout@v3
+
       
    - name: RunLint
       working-directory: ${{env.GITHUB_WORKSPACE}}
