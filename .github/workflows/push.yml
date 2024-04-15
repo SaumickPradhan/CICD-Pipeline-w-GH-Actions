@@ -40,7 +40,6 @@ jobs:
  
   lint:
     runs-on: windows-latest
-
     steps:
     - uses: actions/checkout@v3
 
@@ -53,10 +52,7 @@ jobs:
     runs-on: windows-latest
     
     steps:
-    
-    -  uses: actions/checkout@v3
-
-      
-   - name: RunLint
+    - uses: actions/checkout@v3
+    - name: RunLint
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: echo LINTING
