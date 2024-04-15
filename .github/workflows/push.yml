@@ -40,6 +40,7 @@ jobs:
  
   lint:
     runs-on: windows-latest
+
     steps:
     - uses: actions/checkout@v3
 
@@ -52,7 +53,17 @@ jobs:
     runs-on: windows-latest
     
     steps:
-    - uses: actions/checkout@v3
-    - name: RunLint
+    
+    - name: Setup VSTest.exe
+      uses: Malcolmnixon/Setup-VSTest@v4
+      
+    # - name: DownloadBinaries
+    #   uses: actions/download-artifact@v3
+    #   with:
+    #     name: my-artifact
+    #     path: x64\Release
+    
+    - name: RunTests
       working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: echo LINTING
+      run: VSTest.Console.exe  x64\Release\UnitTest1.dll
+      
