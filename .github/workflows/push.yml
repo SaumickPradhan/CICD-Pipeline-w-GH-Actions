@@ -48,11 +48,15 @@ jobs:
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: echo LINTING
 
-test:
-  runs-on: windows-latest
-  needs: [lint, build]
-  steps:
-    - name: RunTest
-      working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: echo TEST
+  test:
+    needs: [build, lint]
+    runs-on: windows-latest
+    
+    steps:
+    
+    - name: Setup VSTest.exe
+      uses: Malcolmnixon/Setup-VSTest@v4
       
+   - name: RunLint
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      run: echo LINTING
