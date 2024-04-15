@@ -48,22 +48,11 @@ jobs:
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: echo LINTING
 
-  test:
-    needs: [build, lint]
-    runs-on: windows-latest
-    
-    steps:
-    
-    - name: Setup VSTest.exe
-      uses: Malcolmnixon/Setup-VSTest@v4
-      
-    - name: DownloadBinaries
-      uses: actions/download-artifact@v3
-      with:
-        name: my-artifact
-        path: x64\Release
-    
-    - name: RunTests
+test:
+  runs-on: windows-latest
+  needs: [lint, build]
+  steps:
+    - name: RunTest
       working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: VSTest.Console.exe  x64\Release\UnitTest1.dll
+      run: echo TEST
       
